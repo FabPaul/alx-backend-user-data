@@ -9,6 +9,7 @@ import logging
 
 PII_FIELDS = ['name', 'email', 'phone', 'ssn', 'password']
 
+
 def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """Returns the log messaged obfuscated"""
@@ -46,6 +47,7 @@ def get_logger() -> logging.Logger:
     logger.propagate = False
 
     stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(RedactingFormatter(list(PII_FIELDS)))
     logger.addHandler(stream_handler)
 
     return logger

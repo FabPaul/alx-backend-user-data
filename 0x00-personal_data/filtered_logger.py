@@ -7,6 +7,7 @@ from typing import List
 import logging
 
 
+# fields to fetch PII fields from
 PII_FIELDS = ['name', 'email', 'phone', 'ssn', 'password']
 
 

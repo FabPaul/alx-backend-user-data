@@ -64,3 +64,19 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=os.getenv("PERSONAL_DATA_DB_NAME")
     )
     return db
+
+
+def main():
+    """Main function to retriev logs, takes nothing and returns nothing"""
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    names = [name[0] for name in cursor.description]
+
+    logger = get_logger()
+    for row in cursor:
+        row_info = ''.join(f'{i}={str(j)}; ' for i, j in zip(row, row_info))
+        logger.info(row_info.strip())
+
+    cursor.close()
+    db.close()

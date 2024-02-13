@@ -43,10 +43,10 @@ class BasicAuth(Auth):
             return None, None
         elif type(decoded_base64_authorization_header) is not str:
             return None, None
-        elif ':' not in decoded_base64_authorization_header:
+
+        colon = decoded_base64_authorization_header.find(':')
+        if colon == -1:
             return None, None
-        
-        colon = decoded_base64_authorization_header.rfind(':')
 
         email = decoded_base64_authorization_header[:colon]
         password = decoded_base64_authorization_header[colon + 1:]
@@ -87,7 +87,6 @@ class BasicAuth(Auth):
         decoded = self.decode_base64_authorization_header(base64_header)
         if decoded is None:
             return None
-
         users = self.extract_user_credentials(decoded)
         if users is None:
             return None

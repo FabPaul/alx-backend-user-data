@@ -1,4 +1,4 @@
-#!/usr?bin/env python3
+#!/usr/bin/env python3
 """New flask view module to handle session Auth"""
 
 

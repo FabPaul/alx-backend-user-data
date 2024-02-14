@@ -20,6 +20,9 @@ def session_auth():
         return jsonify({"error": "password missing"}), 400
 
     user = User.search({"email": email})
+
+    if not user:
+        return jsonify({"error": "no user found for this email"})
     for u in user:
         if u.is_valid_password(password):
 

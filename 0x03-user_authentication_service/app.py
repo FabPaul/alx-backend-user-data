@@ -13,6 +13,7 @@ def home():
     """Basic flask app"""
     return jsonify({'message': 'Bienvenue'})
 
+
 @app.route("/users", methods=['POST'])
 def users():
     """Users function for the users route"""

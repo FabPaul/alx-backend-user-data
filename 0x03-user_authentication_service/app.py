@@ -35,16 +35,13 @@ def login():
     email = request.form.get('email')
     password = request.form.get('password')
     user = AUTH.valid_login(email, password)
-    try:
-        if not user:
-            abort(401)
-        else:
-            session_id = AUTH.create_session(email)
-            response = make_response({"email": email, "message": "logged in"})
-            response.set_cookie("session_id", session_id)
-        return response
-    except Exception:
-        raise NoResultFound        
+    if not user:
+        abort(401)
+    else:
+        session_id = AUTH.create_session(email)
+        response = make_response({"email": email, "message": "logged in"})
+        response.set_cookie("session_id", session_id)
+    return response
 
 
 if __name__ == "__main__":

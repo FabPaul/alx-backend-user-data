@@ -45,7 +45,7 @@ class Auth:
             return bcrypt.checkpw(password.encode('utf-8'), hash_password)
         except NoResultFound:
             return False
-        
+
     def create_session(self, email: str) -> str:
         """Creates a session ID """
         try:

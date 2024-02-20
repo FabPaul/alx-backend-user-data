@@ -41,7 +41,7 @@ class DB:
 
         return user_created
 
-    def find_user_by(self, **kwargs):
+    def find_user_by(self, **kwargs) -> User:
         """FIids a user by arbitrary keyword arguments"""
         user = self._session.query(User).filter_by(**kwargs).first()
         if not user:

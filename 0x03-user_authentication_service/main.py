@@ -45,14 +45,8 @@ def log_in(email: str, password: str) -> str:
         assert "session_id" in response_json
         return response_json["session_id"]
     except json.JSONDecodeError:
-        print("Error: Invalid JSON response from server")
-        print("Response content:")
-        print(response.content.decode())
         raise
     except AssertionError:
-        print("Error: Unexpected response from server")
-        print("Response content:")
-        print(response.content.decode())
         raise
 
 
@@ -62,8 +56,6 @@ def profile_unlogged() -> None:
     try:
         assert response.status_code == 403
     except AssertionError:
-        print("Unexpected response from server:")
-        print(response.content.decode())
         raise
 
 
